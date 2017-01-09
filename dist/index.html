@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="./css/app.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="loader" style="display: none;"></div>
+<div class="container">
+    <nav class="navbar navbar-inverse ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Transportation App</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!--<li><a href="#">Home</a></li>-->
+                    <li class="active"><a href="#">Train Between Stations</a></li>
+                    <!--<li><a href="#">Live Train Status</a></li>
+                    <li><a href="#">Train Schedule</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <div class="row content" style="display:none;">
+            <div class="col-sm-8 text-left">
+                <div class="container-fluid text-center">
+                    <div class="row content" style="margin-top:60px;">
+                        <table width="100%" border="0">
+                            <tbody>
+                            <tr>
+                                <td align="center" class="ads"></td>
+                            </tr>
+                            <tr>
+                                <td class="eform">
+                                    <div class="col-sm-4 form-group">
+                                        <input type="text" class="form-control spottrain ui-autocomplete-input"
+                                               id="PNR_NUM" placeholder="Train Number" autocomplete="off" role="textbox"
+                                               aria-autocomplete="list" aria-haspopup="true">
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <input type="date" class="form-control" id="jdate" placeholder="MM/DD/YYYY">
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <button type="button" class="btn btn-info" onclick="loadPNRStatus();">Go
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" class="ads"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid text-center">
+            <div class="row content">
+                <div class="col-sm-8 text-left">
+                    <!-------------SEARCH--BOX--START-------------->
+                    <div class="container-fluid text-center">
+                        <div class="row content">
+
+                            <table width="100%" border="0">
+                                <tbody>
+                                <tr>
+                                    <td align="center" class="ads"></td>
+                                </tr>
+                                <tr>
+                                    <td class="eform">
+                                        <div class="col-sm-5 form-group">
+                                            <input id="txtSource"
+                                                   class="form-control dd_user_input  ui-autocomplete-input"
+                                                   placeholder="Source Station" aria-autocomplete="list"
+                                                   aria-haspopup="true">
+                                        </div>
+                                        <div class="col-sm-5 form-group">
+                                            <input id="txtDest"
+                                                   class="form-control dd_user_input  ui-autocomplete-input"
+                                                   placeholder="Destination Station" aria-autocomplete="list"
+                                                   aria-haspopup="true">
+                                        </div>
+
+                                        <div class="col-sm-2">
+                                            <button type="button" id="btnSearch" class="btn btn-info btn-search">Go</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" class="ads"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <!-------------SEARCH--BOX--END-------------->
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid text-center">
+            <div style="margin-top:30px;">
+                <div class="panel panel-default" id="listTrain" style="overflow-x:auto;">
+                    <div class="panel-heading">Records not found</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+<script src="./indexController.js"></script>
+<script src="./js/app.js"></script>
+<script type="text/javascript">
+    var apikey = 'g4hlxgf7';
+//    var apikey = '9cwk6oo9';
+
+    $(function () {
+        objRailway = new railwayMaster();
+        objRailway.bindSource();
+        objRailway.bindDest();
+        objRailway.searchButtonClick();
+        objRailway.displayDefaultTrainList();
+    });
+</script>
+</body>
+</html>

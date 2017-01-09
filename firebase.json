@@ -1,0 +1,9 @@
+{
+  "firebase": "vms",
+  "public": "transportation",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
